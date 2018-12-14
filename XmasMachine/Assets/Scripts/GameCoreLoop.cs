@@ -5,8 +5,7 @@ using UnityEngine;
 
 /*
  * 
- * TODO: init gameobjects, attach random string, 
- * move from left to right, if at right when still letters left - level-- 
+ * TODO: if at right when still letters left - level-- 
  * if string emptied - add new object + a little fast (gamemanager) 
  * 
  * */
@@ -22,6 +21,7 @@ public enum CoreLoopPhase
 public class GameCoreLoop : MonoBehaviour
 {
     public GameObject ToyPrefab;
+    public StringManager stringManager;
 
     public float SpawnIntervall;
 
@@ -46,15 +46,10 @@ public class GameCoreLoop : MonoBehaviour
         }
     }
 
-    IEnumerator SpawnToy()
-    {
-        CreateToy(0);
-
-        yield return null;
-    }
-
     public void CreateToy(int type = 0)
     {
-        Instantiate(ToyPrefab, Vector3.zero, Quaternion.identity);
+        GameObject instance = Instantiate(ToyPrefab, Vector3.zero, Quaternion.identity);
+        TextMesh display = instance.GetComponentInChildren<TextMesh>();
+        stringManager.AddToyString(display);
     }
 }
