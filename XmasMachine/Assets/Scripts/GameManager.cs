@@ -14,9 +14,6 @@ namespace Levels
         [SerializeField]
         private GameConfig gameConfig = new GameConfig();
 
-
-
-
         private String state = "start";
 
         public static GameManager instance = null;              //Static instance of GameManager which allows it to be accessed by any other script.
@@ -62,6 +59,11 @@ namespace Levels
         void Update()
         {
 
+        }
+
+        public void LoadLevel(int level)
+        {
+            LevelManager.LoadLevel(level);
         }
 
 

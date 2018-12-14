@@ -1,13 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using System.Text;
 using System.Linq;
 
 public class StringManager : MonoBehaviour
 {
-
     static public List<string> GeneratedStrings = new List<string>();
+    public Text DisplayString;
 
     //use alphabet2 for extra difficulty
     const string alphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -22,10 +23,62 @@ public class StringManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.S))
+        if(!DisplayString)
         {
-            GenerateRandomString(6);
+            SetDisplayText();
         }
+
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            string gen = GenerateRandomString(6);
+
+            DisplayString.text = gen;
+            if(GeneratedStrings[0] == null)
+            {
+                GeneratedStrings.Add(gen);
+            }
+            else
+            {
+                GeneratedStrings[0] = gen;
+            }
+        }
+
+        if(Input.anyKeyDown)
+        {
+            CheckInputLetter(Input.inputString[0]);
+        }
+    }
+
+    public void SetDisplayText()
+    {
+        if (!DisplayString)
+        {
+            Debug.Log("Reconnected Debug Text Component");
+            DisplayString = GameObject.Find("DebugDisplayString").GetComponent<Text>();
+        }
+    }
+
+    public bool CheckInputLetter(char letter)
+    {
+        Debug.Log("Entered letter: " + letter);
+
+        string current = GeneratedStrings[0];
+
+        if (current[current.Length - 1] == letter)
+        {
+            //Correct input
+            Debug.Log("Correct Letter!");
+
+            //remove letter from string
+            GeneratedStrings[0] = current.Substring(current.Length - 1);
+            DisplayString.text = GeneratedStrings[0];
+        }
+        else
+        {
+            return false;
+        }
+
+        return true;
     }
 
     public string GenerateRandomString(int length)
