@@ -8,7 +8,9 @@ using System.Linq;
 public class StringManager : MonoBehaviour
 {
     static public List<string> GeneratedStrings = new List<string>();
-    public Text DisplayString;
+    public Text DisplayString1;
+    public Text DisplayString2;
+    public Text DisplayString3;
 
     //use alphabet2 for extra difficulty
     const string alphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -17,30 +19,34 @@ public class StringManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        GeneratedStrings.Add("------");
+        GeneratedStrings.Add("------");
+        GeneratedStrings.Add("------");
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(!DisplayString)
+        if(!DisplayString1)
         {
-            SetDisplayText();
+            SetDisplayTexts();
         }
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            string gen = GenerateRandomString(6);
+            string gen1 = GenerateRandomString(6);
+            string gen2 = GenerateRandomString(6);
+            string gen3 = GenerateRandomString(6);
 
-            DisplayString.text = gen;
-            if(GeneratedStrings[0] == null)
-            {
-                GeneratedStrings.Add(gen);
-            }
-            else
-            {
-                GeneratedStrings[0] = gen;
-            }
+            DisplayString1.text = gen1;
+            GeneratedStrings[0] = gen1;
+
+            DisplayString2.text = gen2;
+            GeneratedStrings[1] = gen2;
+
+            DisplayString3.text = gen3;
+            GeneratedStrings[2] = gen3;
+
         }
 
         if(Input.anyKeyDown)
@@ -49,12 +55,22 @@ public class StringManager : MonoBehaviour
         }
     }
 
-    public void SetDisplayText()
+    public void SetDisplayTexts()
     {
-        if (!DisplayString)
+        if (!DisplayString1)
         {
             Debug.Log("Reconnected Debug Text Component");
-            DisplayString = GameObject.Find("DebugDisplayString").GetComponent<Text>();
+            DisplayString1 = GameObject.Find("DebugDisplayString1").GetComponent<Text>();
+        }
+        if (!DisplayString2)
+        {
+            //Debug.Log("Reconnected Debug Text Component");
+            DisplayString2 = GameObject.Find("DebugDisplayString2").GetComponent<Text>();
+        }
+        if (!DisplayString3)
+        {
+            //Debug.Log("Reconnected Debug Text Component");
+            DisplayString3 = GameObject.Find("DebugDisplayString3").GetComponent<Text>();
         }
     }
 
@@ -62,22 +78,33 @@ public class StringManager : MonoBehaviour
     {
         Debug.Log("Entered letter: " + letter);
 
-        string current = GeneratedStrings[0];
-
-        if (current[current.Length - 1] == letter)
+        for(int i = 0; i < 3; i++)
         {
-            //Correct input
-            Debug.Log("Correct Letter!");
+            string current = GeneratedStrings[i];
 
-            //remove letter from string
-            GeneratedStrings[0] = current.Substring(current.Length - 1);
-            DisplayString.text = GeneratedStrings[0];
-        }
-        else
-        {
-            return false;
-        }
+            if (current[current.Length - 1] == letter)
+            {
+                //Correct input
+                Debug.Log("Correct Letter!");
 
+                //remove letter from string
+                GeneratedStrings[i] = current.Substring(0, current.Length - 1);
+                switch (i)
+                {
+                    case 0:
+                        DisplayString1.text = GeneratedStrings[i];
+                        break;
+                    case 1:
+                        DisplayString2.text = GeneratedStrings[i];
+                        break;
+                    case 2:
+                        DisplayString3.text = GeneratedStrings[i];
+                        break;
+                }
+
+                break;
+            }
+        }
         return true;
     }
 
