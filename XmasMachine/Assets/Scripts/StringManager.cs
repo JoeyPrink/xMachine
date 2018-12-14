@@ -8,6 +8,8 @@ using System.Linq;
 public class StringManager : MonoBehaviour
 {
     static public List<string> GeneratedStrings = new List<string>();
+    public List<TextMesh> DisplayTexts = new List<TextMesh>();
+
     public Text DisplayString1;
     public Text DisplayString2;
     public Text DisplayString3;
@@ -19,8 +21,6 @@ public class StringManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        GeneratedStrings.Add("------");
-        GeneratedStrings.Add("------");
         GeneratedStrings.Add("------");
     }
 

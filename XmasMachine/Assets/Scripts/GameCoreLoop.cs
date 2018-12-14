@@ -21,16 +21,40 @@ public enum CoreLoopPhase
 
 public class GameCoreLoop : MonoBehaviour
 {
+    public GameObject ToyPrefab;
+
+    public float SpawnIntervall;
+
+    private float timer;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        CreateToy();
+        timer = 0.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        timer += Time.deltaTime;
+        if(timer > SpawnIntervall)
+        {
+            timer = 0.0f;
+
+            CreateToy();
+        }
+    }
+
+    IEnumerator SpawnToy()
+    {
+        CreateToy(0);
+
+        yield return null;
+    }
+
+    public void CreateToy(int type = 0)
+    {
+        Instantiate(ToyPrefab, Vector3.zero, Quaternion.identity);
     }
 }
