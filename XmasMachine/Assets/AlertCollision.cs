@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class AlertCollision : MonoBehaviour
 {
@@ -86,6 +87,12 @@ public class AlertCollision : MonoBehaviour
         stringManager.DisplayTexts.Clear();
 
         //find points text
+        //        Text pointText = GameObject.Find("Canvas/Button/PointsText").GetComponent<Text>();
+
+        SceneManager.GetSceneByName("2-endScreen").GetRootGameObjects();
+
+        Text pointText = GameObject.Find("PointsText").GetComponent<Text>();
+        Debug.Log("!!!!" + pointText);
 
         stringManager.toysCollected = 0;
 
