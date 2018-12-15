@@ -23,6 +23,7 @@ public class StringManager : MonoBehaviour
 
             if (GeneratedStrings.Count != 0)
             {
+                if(Input.inputString != null)
                 CheckInputLetter(Input.inputString[0]);
 
             }
@@ -69,7 +70,7 @@ public class StringManager : MonoBehaviour
                 }
                 else
                 {
-                    if (DisplayTexts[i].text != null)
+                    if (DisplayTexts[i] != null && DisplayTexts[i].text != null)
                         DisplayTexts[i].text = GeneratedStrings[i];
                 }
 
