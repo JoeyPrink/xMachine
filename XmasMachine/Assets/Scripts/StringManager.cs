@@ -12,10 +12,16 @@ public class StringManager : MonoBehaviour
     public AudioSource doneSound;
     public AudioSource letterSound;
     public int toysCollected = 0;
+    public TextMesh ToyCounter;
 
     //use alphabet2 for extra difficulty
     const string alphabet = "abcdefghijklmnopqrstuvwxyz";
     //const string alphabet_ger = "abcdefghijklmnopqrstuvwxyzöäüß";
+
+    private void Start()
+    {
+        ToyCounter.text = "Toys: " + toysCollected;
+    }
 
     // Update is called once per frame
     void Update()
@@ -66,6 +72,8 @@ public class StringManager : MonoBehaviour
 
 
                     toysCollected = toysCollected + 1;
+
+                    ToyCounter.text = "Toys: " + toysCollected;
 
                     //juicy stuff
                     doneSound.Play();
