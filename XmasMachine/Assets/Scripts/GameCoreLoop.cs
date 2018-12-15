@@ -22,8 +22,8 @@ public class GameCoreLoop : MonoBehaviour
 {
     public GameObject ToyPrefab;
     public StringManager stringManager;
-
     public float SpawnIntervall;
+    public Transform SpawnLocation;
 
     private float timer;
 
@@ -32,6 +32,15 @@ public class GameCoreLoop : MonoBehaviour
     {
         CreateToy();
         timer = 0.0f;
+    }
+
+    private void OnEnable()
+    {
+        //Don't tell anybody
+        if(!SpawnLocation)
+        {
+            SpawnLocation = GameObject.Find("SpawnLocation").transform;
+        }
     }
 
     // Update is called once per frame
@@ -48,7 +57,7 @@ public class GameCoreLoop : MonoBehaviour
 
     public void CreateToy(int type = 0)
     {
-        GameObject instance = Instantiate(ToyPrefab, Vector3.zero, Quaternion.identity);
+        GameObject instance = Instantiate(ToyPrefab, SpawnLocation.position, SpawnLocation.rotation);
         TextMesh display = instance.GetComponentInChildren<TextMesh>();
         stringManager.AddToyString(display);
     }
