@@ -11,6 +11,7 @@ public class StringManager : MonoBehaviour
     public List<TextMesh> DisplayTexts = new List<TextMesh>();
     public AudioSource doneSound;
     public AudioSource letterSound;
+    public int toysCollected = 0;
 
     //use alphabet2 for extra difficulty
     const string alphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -61,6 +62,9 @@ public class StringManager : MonoBehaviour
                 if (current.Length <= 1)
                 {
                     Debug.Log("THIS WAS THE LAST LETTER!");
+
+
+                    toysCollected = toysCollected + 1;
 
                     //juicy stuff
                     doneSound.Play();

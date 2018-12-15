@@ -86,6 +86,7 @@ public class GameCoreLoop : MonoBehaviour
     {
 #if UNITY_EDITOR
         GUILayout.Label("Current lives: " + playerLives);
+        GUILayout.Label("Current toys: " +  stringManager.toysCollected);
 #endif
     }
 

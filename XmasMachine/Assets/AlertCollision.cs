@@ -80,10 +80,17 @@ public class AlertCollision : MonoBehaviour
 
     private void restartLevel()
     {
-        SceneManager.LoadScene("0-startScreen");
+
+        SceneManager.LoadScene("2-endScreen");
         coreLoop.PlayerLives = 3;
         stringManager.DisplayTexts.Clear();
-        
+
+        //find points text
+
+        stringManager.toysCollected = 0;
+
 
     }
+
+
 }
