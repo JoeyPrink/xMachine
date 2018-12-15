@@ -17,7 +17,7 @@ public class StringManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.anyKeyDown)
+        if (Input.anyKeyDown)
         {
             CheckInputLetter(Input.inputString[0]);
         }
@@ -34,14 +34,15 @@ public class StringManager : MonoBehaviour
 
     public bool CheckInputLetter(char letter)
     {
-       // Debug.Log("Entered letter: " + letter);
+        // Debug.Log("Entered letter: " + letter);
 
-        for(int i = 0; i < GeneratedStrings.Count; i++)
+        for (int i = 0; i < GeneratedStrings.Count; i++)
         {
             string current = GeneratedStrings[i];
 
 
-            if (current.Length == 0) {
+            if (current.Length == 0)
+            {
 
                 //remove string, object
 
@@ -54,7 +55,7 @@ public class StringManager : MonoBehaviour
                 //remove letter from string
                 GeneratedStrings[i] = current.Substring(0, current.Length - 1);
 
-                //TODO: Check if last letter of string, delete toy object
+                //Check if last letter of string, delete toy object
                 if (current.Length <= 1)
                 {
                     Debug.Log("THIS WAS THE LAST LETTER!");
@@ -69,16 +70,18 @@ public class StringManager : MonoBehaviour
 
 
                 }
-                else {
+                else
+                {
 
-                  DisplayTexts[i].text = GeneratedStrings[i];
-              
-                
+                    if (DisplayTexts[i].text != null)
+                        DisplayTexts[i].text = GeneratedStrings[i];
+
+
                 }
 
 
 
-              
+
 
                 break;
             }
@@ -92,13 +95,12 @@ public class StringManager : MonoBehaviour
 
         var building = new StringBuilder();
 
-        for(int i = 0; i < length; i++)
+        for (int i = 0; i < length; i++)
         {
             double rand = Random.value * alphabet.Length;
-
             char letter = alphabet[(int)rand];
 
-            Debug.Log("Chosen letter: " + letter + " from index " + (int)rand);
+            //Debug.Log("Chosen letter: " + letter + " from index " + (int)rand);
 
             building.Append(letter);
         }

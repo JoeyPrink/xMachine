@@ -52,4 +52,11 @@ public class GameCoreLoop : MonoBehaviour
         TextMesh display = instance.GetComponentInChildren<TextMesh>();
         stringManager.AddToyString(display);
     }
+
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("Hello" + other.gameObject.name + " collided");
+    }
+
 }
