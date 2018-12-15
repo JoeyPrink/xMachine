@@ -35,7 +35,6 @@ public class AlertCollision : MonoBehaviour
         string tmpString = currentTextMesh.text;
 
 
-
         if (tmpString.Length > 0)
         {
 
@@ -46,14 +45,27 @@ public class AlertCollision : MonoBehaviour
             //TODO removeString 
 
             stringManager.DisplayTexts.Remove(currentTextMesh);
-            // stringManager.GeneratedStrings.Remove(currentTextMesh);
+
+            for (int i = 0; i < stringManager.DisplayTexts.Count; i++){
+                if (stringManager.DisplayTexts[i].Equals(currentTextMesh)) {
+                    Debug.Log("yeaaaaaaah");
+                }
+            }
+
+           /* int index = stringManager.DisplayTexts.FindIndex(currentTextMesh);
+
+
+
+            //remove object, remove string
+            DisplayTexts[i].text = "";
+            Destroy(DisplayTexts[i].gameObject.transform.parent.gameObject);
+
+
+            DisplayTexts.Remove(DisplayTexts[i]);
+            GeneratedStrings.Remove(GeneratedStrings[i]);*/
+
         }
-        //stringManager.DisplayTexts[i].text = "";
-        //stringManager.Destroy(DisplayTexts[i].gameObject.transform.parent.gameObject);
 
-
-        //stringManager.DisplayTexts.Remove(DisplayTexts[i]);
-        //stringManager.GeneratedStrings.Remove(GeneratedStrings[i]);
 
     }
 
