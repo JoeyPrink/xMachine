@@ -62,14 +62,19 @@ public class StringManager : MonoBehaviour
                 {
                     Debug.Log("THIS WAS THE LAST LETTER!");
 
+                    //juicy stuff
+                    doneSound.Play();
+                    GameObject go = DisplayTexts[i].gameObject.transform.parent.gameObject;
+                    go.transform.GetChild(1).gameObject.SetActive(false); //deactivate todo sprite
+                    go.transform.GetChild(2).gameObject.SetActive(true); //activate done sprite
+                    go.GetComponent<Collider2D>().enabled = false;
+
                     //remove object, remove string
                     DisplayTexts[i].text = "";
-                    Destroy(DisplayTexts[i].gameObject.transform.parent.gameObject);
+                    //Destroy(DisplayTexts[i].gameObject.transform.parent.gameObject);
 
                     DisplayTexts.Remove(DisplayTexts[i]);
                     GeneratedStrings.Remove(GeneratedStrings[i]);
-
-                    doneSound.Play();
                 }
                 else
                 {
