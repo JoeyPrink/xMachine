@@ -12,7 +12,7 @@ public class StringManager : MonoBehaviour
 
     //use alphabet2 for extra difficulty
     const string alphabet = "abcdefghijklmnopqrstuvwxyz";
-    const string alphabet_ger = "abcdefghijklmnopqrstuvwxyzöäüß";
+    //const string alphabet_ger = "abcdefghijklmnopqrstuvwxyzöäüß";
 
     // Update is called once per frame
     void Update()
@@ -25,7 +25,7 @@ public class StringManager : MonoBehaviour
 
     public void AddToyString(TextMesh text)
     {
-        //ToDo: variable for string length
+        //TODO: variable for string length
         string gen = GenerateRandomString(6);
         GeneratedStrings.Add(gen);
         DisplayTexts.Add(text);
@@ -34,22 +34,51 @@ public class StringManager : MonoBehaviour
 
     public bool CheckInputLetter(char letter)
     {
-        Debug.Log("Entered letter: " + letter);
+       // Debug.Log("Entered letter: " + letter);
 
-        for(int i = 0; i < 3; i++)
+        for(int i = 0; i < GeneratedStrings.Count; i++)
         {
             string current = GeneratedStrings[i];
 
-            if (current[current.Length - 1] == letter)
+
+            if (current.Length == 0) {
+
+                //remove string, object
+
+            }
+            else if (current[current.Length - 1] == letter)
             {
                 //Correct input
                 Debug.Log("Correct Letter!");
 
                 //remove letter from string
                 GeneratedStrings[i] = current.Substring(0, current.Length - 1);
-                DisplayTexts[i].text = GeneratedStrings[i];
 
                 //TODO: Check if last letter of string, delete toy object
+                if (current.Length <= 1)
+                {
+                    Debug.Log("THIS WAS THE LAST LETTER!");
+
+                    //remove object, remove string
+                    DisplayTexts[i].text = "";
+                    Destroy(DisplayTexts[i].gameObject.transform.parent.gameObject);
+
+
+                    DisplayTexts.Remove(DisplayTexts[i]);
+                    GeneratedStrings.Remove(GeneratedStrings[i]);
+
+
+                }
+                else {
+
+                  DisplayTexts[i].text = GeneratedStrings[i];
+              
+                
+                }
+
+
+
+              
 
                 break;
             }
@@ -75,7 +104,7 @@ public class StringManager : MonoBehaviour
         }
 
         rs = building.ToString();
-        Debug.Log(rs);
+        //Debug.Log(rs);
         return rs;
     }
 }
