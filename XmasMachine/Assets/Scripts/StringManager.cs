@@ -19,7 +19,14 @@ public class StringManager : MonoBehaviour
     {
         if (Input.anyKeyDown)
         {
-            CheckInputLetter(Input.inputString[0]);
+
+
+            if (GeneratedStrings.Count != 0)
+            {
+                CheckInputLetter(Input.inputString[0]);
+
+            }
+
         }
     }
 
@@ -34,6 +41,9 @@ public class StringManager : MonoBehaviour
 
     public bool CheckInputLetter(char letter)
     {
+
+
+
         // Debug.Log("Entered letter: " + letter);
 
         for (int i = 0; i < GeneratedStrings.Count; i++)

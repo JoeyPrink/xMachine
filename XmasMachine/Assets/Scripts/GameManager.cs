@@ -73,7 +73,7 @@ namespace Levels
         public void OnGUI()
         {
 #if UNITY_EDITOR
-        //    GUILayout.Label("Current state: " + state);
+            //GUILayout.Label("Current state: " + state);
             //GUILayout.Label("Current level: " + level);
             //GUILayout.Label("Current lives: " + lives);
 #endif
