@@ -8,7 +8,7 @@ public class AlertCollision : MonoBehaviour
 {
     public StringManager stringManager;
     public GameCoreLoop coreLoop;
-
+    public AudioSource hitSound;
 
     /*
      * 
@@ -64,6 +64,7 @@ public class AlertCollision : MonoBehaviour
                         stringManager.GeneratedStrings.RemoveAt(i);
 
                         Destroy(tmpGO);
+                        hitSound.Play();
                         return;
                     }
                         

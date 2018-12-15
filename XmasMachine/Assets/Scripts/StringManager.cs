@@ -9,6 +9,8 @@ public class StringManager : MonoBehaviour
 {
     public List<string> GeneratedStrings = new List<string>();
     public List<TextMesh> DisplayTexts = new List<TextMesh>();
+    public AudioSource doneSound;
+    public AudioSource letterSound;
 
     //use alphabet2 for extra difficulty
     const string alphabet = "abcdefghijklmnopqrstuvwxyz";
@@ -19,7 +21,6 @@ public class StringManager : MonoBehaviour
     {
         if (Input.anyKeyDown)
         {
-
 
             if (GeneratedStrings.Count != 0)
             {
@@ -67,12 +68,16 @@ public class StringManager : MonoBehaviour
 
                     DisplayTexts.Remove(DisplayTexts[i]);
                     GeneratedStrings.Remove(GeneratedStrings[i]);
+
+                    doneSound.Play();
                 }
                 else
                 {
                     if (DisplayTexts[i] != null && DisplayTexts[i].text != null)
                         DisplayTexts[i].text = GeneratedStrings[i];
                 }
+
+                letterSound.Play();
 
                 return true;
             }
