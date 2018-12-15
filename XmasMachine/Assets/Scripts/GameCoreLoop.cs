@@ -23,13 +23,13 @@ public class GameCoreLoop : MonoBehaviour
 {
 
     public int playerLives = 3;
-
+    public float spawnIntervallSpeed = 0.001f; 
 
 
 
     public GameObject ToyPrefab;
     public StringManager stringManager;
-    public float SpawnIntervall;
+    public float SpawnIntervall = 2.0f;    
     public Transform SpawnLocation;
 
     private float timer;
@@ -54,7 +54,7 @@ public class GameCoreLoop : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if(timer > SpawnIntervall)
+        if (timer > SpawnIntervall)
         {
             timer = 0.0f;
 
@@ -67,9 +67,11 @@ public class GameCoreLoop : MonoBehaviour
 
         Debug.Log("current scene: " + SceneManager.GetActiveScene().name);
         if(SceneManager.GetActiveScene().name == "1-level") {
-        GameObject instance = Instantiate(ToyPrefab, SpawnLocation.position, SpawnLocation.rotation);
-        TextMesh display = instance.GetComponentInChildren<TextMesh>();
-        stringManager.AddToyString(display);
+            GameObject instance = Instantiate(ToyPrefab, SpawnLocation.position, SpawnLocation.rotation);
+            TextMesh display = instance.GetComponentInChildren<TextMesh>();
+            stringManager.AddToyString(display);
+            SpawnIntervall = SpawnIntervall - spawnIntervallSpeed;
+            spawnIntervallSpeed = spawnIntervallSpeed + 0.001f;
 
         }
     }
