@@ -35,8 +35,9 @@ public class StringManager : MonoBehaviour
 
     public void AddToyString(TextMesh text)
     {
-        //TODO: variable for string length
-        string gen = GenerateRandomString(6);
+        int stringLength = (int)(Random.value * 4.0d + 3.0d);
+
+        string gen = GenerateRandomString(stringLength);
         GeneratedStrings.Add(gen);
         DisplayTexts.Add(text);
         text.text = gen;
