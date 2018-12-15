@@ -24,9 +24,7 @@ public class AlertCollision : MonoBehaviour
         Debug.Log(other.gameObject.name + " collided");
         GameObject tmpGO = other.gameObject;
         TextMesh currentTextMesh = tmpGO.GetComponentInChildren<TextMesh>();
-        string tmpString = currentTextMesh.text;
-
-        
+        string tmpString = currentTextMesh.text; 
 
         if (tmpString.Length > 0)
         {
@@ -51,9 +49,6 @@ public class AlertCollision : MonoBehaviour
             } 
             //Debug.Log("current lives... " + currentLives);
 
-          
-
-
             for (int i = 0; i < stringManager.DisplayTexts.Count; i++){
 
                 Debug.Log("..." + i);
@@ -66,6 +61,10 @@ public class AlertCollision : MonoBehaviour
                     Debug.Log("display :" + i + "::"+ stringManager.DisplayTexts[i].text);
                     if(stringManager.DisplayTexts[i].Equals(currentTextMesh)) {
                         stringManager.DisplayTexts.Remove(currentTextMesh);
+                        stringManager.GeneratedStrings.RemoveAt(i);
+
+                        Destroy(tmpGO);
+                        return;
                     }
                         
                 }
@@ -74,16 +73,8 @@ public class AlertCollision : MonoBehaviour
                 }*/
             }
 
-            Destroy(tmpGO);
-
-
-
-
-
-
+            
         }
-
-
     }
 
     private void restartLevel()
