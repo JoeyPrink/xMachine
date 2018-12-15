@@ -25,8 +25,6 @@ public class GameCoreLoop : MonoBehaviour
     public int playerLives = 3;
     public float spawnIntervallSpeed = 0.001f; 
 
-
-
     public GameObject ToyPrefab;
     public StringManager stringManager;
     public float SpawnIntervall = 2.0f;    

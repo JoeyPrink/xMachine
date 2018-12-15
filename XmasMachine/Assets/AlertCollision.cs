@@ -10,6 +10,8 @@ public class AlertCollision : MonoBehaviour
     public StringManager stringManager;
     public GameCoreLoop coreLoop;
     public AudioSource hitSound;
+    public GameObject Fire;
+    public List<GameObject> Hearts;
 
     /*
      * 
@@ -19,6 +21,14 @@ public class AlertCollision : MonoBehaviour
      * */
 
 
+    private IEnumerator FireRoutine()
+    {
+        Fire.SetActive(true);
+
+        yield return new WaitForSeconds(0.3f);
+
+        Fire.SetActive(false);
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {
@@ -39,12 +49,25 @@ public class AlertCollision : MonoBehaviour
             Debug.Log("..." + stringManager.DisplayTexts.Count);
 
             int currentLives = coreLoop.getPlayerLives() -1;
-
             coreLoop.PlayerLives = currentLives;
 
-            if(currentLives == 0 ) {
-                // TODO Game Over 
+            if (currentLives == 2)
+            {
+                Hearts[2].SetActive(false);
+            }
+            else if (currentLives == 1)
+            {
+                Hearts[1].SetActive(false);
+            }
+            else if (currentLives == 0)
+            {
+                foreach(GameObject o in Hearts)
+                {
+                    o.SetActive(true);
+                }
 
+                // TODO Game Over 
+                
                 restartLevel();
 
             } 
@@ -66,6 +89,8 @@ public class AlertCollision : MonoBehaviour
 
                         Destroy(tmpGO);
                         hitSound.Play();
+                        StartCoroutine(FireRoutine());
+
                         return;
                     }
                         
