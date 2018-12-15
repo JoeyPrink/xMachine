@@ -12,6 +12,7 @@ public class AlertCollision : MonoBehaviour
     public AudioSource hitSound;
     public GameObject Fire;
     public List<GameObject> Hearts;
+    public TextMesh ToyCounter;
 
     /*
      * 
@@ -111,7 +112,11 @@ public class AlertCollision : MonoBehaviour
         stringManager.DisplayTexts.Clear();
         stringManager.GeneratedStrings.Clear();
 
-        SceneManager.LoadScene("1-startScreen");
+        ToyCounter.text = "Toys: 0" ;
+        SceneManager.LoadScene("0-startScreen");
+
+
+
     }
 
 
