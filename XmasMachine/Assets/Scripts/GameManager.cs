@@ -16,6 +16,9 @@ namespace Levels
 
         private String state = "start";
 
+        [SerializeField]
+        public int lives = 3;
+
         public static GameManager instance = null;              //Static instance of GameManager which allows it to be accessed by any other script.
         private int level = 0;                                  //Current level number, expressed in game as "Day 1".
 
@@ -70,8 +73,9 @@ namespace Levels
         public void OnGUI()
         {
 #if UNITY_EDITOR
-            GUILayout.Label("Current state: " + state);
-            GUILayout.Label("Current level: " + level);
+        //    GUILayout.Label("Current state: " + state);
+            //GUILayout.Label("Current level: " + level);
+            //GUILayout.Label("Current lives: " + lives);
 #endif
         }
 

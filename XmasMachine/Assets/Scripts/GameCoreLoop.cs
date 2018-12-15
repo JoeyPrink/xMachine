@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 /*
@@ -20,6 +21,12 @@ public enum CoreLoopPhase
 
 public class GameCoreLoop : MonoBehaviour
 {
+
+    public int playerLives = 3;
+
+
+
+
     public GameObject ToyPrefab;
     public StringManager stringManager;
     public float SpawnIntervall;
@@ -57,9 +64,14 @@ public class GameCoreLoop : MonoBehaviour
 
     public void CreateToy(int type = 0)
     {
+
+        Debug.Log("current scene: " + SceneManager.GetActiveScene().name);
+        if(SceneManager.GetActiveScene().name == "1-level") {
         GameObject instance = Instantiate(ToyPrefab, SpawnLocation.position, SpawnLocation.rotation);
         TextMesh display = instance.GetComponentInChildren<TextMesh>();
         stringManager.AddToyString(display);
+
+        }
     }
 
 
@@ -67,5 +79,29 @@ public class GameCoreLoop : MonoBehaviour
     {
         Debug.Log("Hello" + other.gameObject.name + " collided");
     }
+
+    public void OnGUI()
+    {
+#if UNITY_EDITOR
+        GUILayout.Label("Current lives: " + playerLives);
+#endif
+    }
+
+
+    public int getPlayerLives() {
+        return playerLives;
+    }
+
+    public int PlayerLives
+    {
+        get
+        {
+            return playerLives;
+        }
+
+        set { playerLives = value; }
+
+    }
+
 
 }

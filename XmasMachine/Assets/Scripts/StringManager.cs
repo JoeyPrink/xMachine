@@ -80,9 +80,6 @@ public class StringManager : MonoBehaviour
                 }
 
 
-
-
-
                 break;
             }
         }
