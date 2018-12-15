@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 5071611608938570998}
   - component: {fileID: 2664192213054122455}
   - component: {fileID: 2473460800573683272}
+  - component: {fileID: 3028061621514591134}
   m_Layer: 0
   m_Name: ToyPlaceholder
   m_TagString: Untagged
@@ -253,3 +254,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!111 &3028061621514591134
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5039627853591692787}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: a2dd5e47c1a1b004fac6b2efd788be53, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: a2dd5e47c1a1b004fac6b2efd788be53, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
