@@ -73,6 +73,7 @@ public class StringManager : MonoBehaviour
                     go.transform.GetChild(1).gameObject.SetActive(false); //deactivate todo sprite
                     go.transform.GetChild(2).gameObject.SetActive(true); //activate done sprite
                     go.GetComponent<Collider2D>().enabled = false;
+                    go.GetComponentInChildren<ParticleSystem>().Play();
 
                     //remove object, remove string
                     DisplayTexts[i].text = "";
